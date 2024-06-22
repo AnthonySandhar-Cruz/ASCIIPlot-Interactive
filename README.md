@@ -19,7 +19,7 @@ gcc ap-int.c ascii_plot.c tinyexpr.c -lncurses -lm -o ap-int
 ```
 ./ap-int
 ```
-4. (optional) If you are on Linux, you can add the following line to your `.bashrc' file to be able to run this program from anywhere using `ap-int`
+4. (optional) If you are on Linux, you can add the following line to your `.bashrc` file to be able to run this program from anywhere using `ap-int`
 ```
 alias ap-int='/path/to/ap-int'
 ```
