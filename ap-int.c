@@ -10,6 +10,7 @@ int main(int argc, char *argv[])
 	raw();
 	keypad(stdscr, TRUE);
 	noecho();
+	start_color();
 	refresh();
 
 	WINDOW *options_win;
@@ -41,8 +42,14 @@ int main(int argc, char *argv[])
 	mvwprintw(options_win, height_opts - 2, 2, "(x) exit");
 	wrefresh(options_win);
 
+	// Create colour options for marker
+	init_pair(1, COLOR_RED, COLOR_BLACK);
+	init_pair(2, COLOR_GREEN, COLOR_BLACK);
+	init_pair(3, COLOR_BLUE, COLOR_BLACK);
+
 	// Initialize plot params
-	int startx_mat = width_opts + 3, starty_mat = 3, h_mat = height_plot - 4, w_mat = width_plot - 15;
+	int startx_mat = width_opts + 3,
+		starty_mat = 3, h_mat = height_plot - 4, w_mat = width_plot - 15;
 	char matrix[h_mat][w_mat];
 
 	// Input handling
@@ -51,6 +58,7 @@ int main(int argc, char *argv[])
 	char function[30];
 	char marker = '*';
 	char colour[10] = "red";
+	int colour_pair = 1;
 	while ((ch = getch()) != 'x')
 	{
 		switch (ch)
@@ -97,10 +105,22 @@ int main(int argc, char *argv[])
 			mvwprintw(options_win, 12, 2, "          ");
 			wmove(options_win, 12, 2);
 			mvwprintw(options_win, 12, 2, "%s", colour);
+			if (strcmp(colour, "red") == 0)
+			{
+				colour_pair = 1;
+			}
+			else if (strcmp(colour, "green") == 0)
+			{
+				colour_pair = 2;
+			}
+			else if (strcmp(colour, "blue") == 0)
+			{
+				colour_pair = 3;
+			}
 			wrefresh(options_win);
 			break;
 		case 'p':
-			make_plot(w_mat, h_mat, -domain, domain, function, matrix, marker, startx_mat, starty_mat);
+			make_plot(w_mat, h_mat, -domain, domain, function, matrix, marker, startx_mat, starty_mat, colour_pair);
 			break;
 		case 's':
 			save_plot_to_file(w_mat, h_mat, -domain, domain, function, matrix);

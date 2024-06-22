@@ -3,9 +3,10 @@
 
 #include <stdio.h>
 #include <ncurses.h>
+#include <string.h>
 
 void find_plot_points(int w, int h, char matrix[h][w], int x_mid, int y_mid, double dx, double dy, double x[w], double y[w], char marker);
-void make_plot(int w, int h, double x_min, double x_max, char function[30], char matrix[h][w], char marker, int startx, int starty);
+void make_plot(int w, int h, double x_min, double x_max, char function[30], char matrix[h][w], char marker, int startx, int starty, int colour_pair);
 size_t double_length(double number);
 double find_range_len(double x_min, double x_max);
 void initialize_cartesian(int w, int h, char matrix[h][w], int x_mid, int y_mid);

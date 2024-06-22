@@ -89,7 +89,7 @@ void find_plot_points(int w, int h, char matrix[h][w], int x_mid, int y_mid, dou
     }
 }
 
-void make_plot(int w, int h, double x_min, double x_max, char function[30], char matrix[h][w], char marker, int startx, int starty)
+void make_plot(int w, int h, double x_min, double x_max, char function[30], char matrix[h][w], char marker, int startx, int starty, int colour_pair)
 {
     int x_mid = w / 2;
     int y_mid = h / 2;
@@ -157,7 +157,17 @@ void make_plot(int w, int h, double x_min, double x_max, char function[30], char
         move(starty, startx + 8);
         for (int j = 0; j < w; j++)
         {
-            printw("%c", matrix[i][j]);
+            // printw("%c", matrix[i][j]);
+            if (matrix[i][j] == marker)
+            {
+                attron(COLOR_PAIR(colour_pair));
+                printw("%c", matrix[i][j]);
+                attroff(COLOR_PAIR(colour_pair));
+            }
+            else
+            {
+                printw("%c", matrix[i][j]);
+            }
         }
         starty++;
     }
