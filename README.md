@@ -2,7 +2,7 @@
 An interactive command line tool to make ASCII plots.
 
 # Important Note
-This project utilizes [tinyexpr]{https://github.com/codeplea/tinyexpr} for parsing math in order to produce plots.
+This project utilizes [tinyexpr](https://github.com/codeplea/tinyexpr) for parsing math in order to produce plots.
 
 # Downloading
 An executable file is provided in the repository (ap-int) that you can download and run. If you want to compile the project yourself, follow these steps:
@@ -19,3 +19,8 @@ gcc ap-int.c ascii_plot.c tinyexpr.c -lncurses -lm -o ap-int
 ```
 ./ap-int
 ```
+4. (optional) If you are on Linux, you can add the following line to your `.bashrc' file to be able to run this program from anywhere using `ap-int`
+```
+alias ap-int='/path/to/ap-int'
+```
+Make sure to replace `/path/to/` with the path to the `ap-int` executable.
